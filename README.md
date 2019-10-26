@@ -1,2 +1,2 @@
-# bitso-apply
-Process 
+Steps needed
+
