@@ -15,4 +15,8 @@ public class User {
         //TODO encrypt
         this.password = password;
     }
+
+    public long getId(){
+        return this.id;
+    }
 }
