@@ -46,6 +46,9 @@ public class OrderModelImpl implements OrderModel {
 
     @Override
     public List<Order> book(Currency major, Currency minor) {
-        throw new UnsupportedOperationException("Implement me!");
+        // throw new UnsupportedOperationException("Implement me!");
+        return orders.values().stream().filter(o -> o.getMajor() == major)
+                .filter(o -> o.getMinor() == minor )
+                .collect(Collectors.toList());
     }
 }

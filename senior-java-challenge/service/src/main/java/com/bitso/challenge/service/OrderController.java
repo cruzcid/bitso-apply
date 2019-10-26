@@ -49,8 +49,8 @@ public class OrderController {
     public List<Order> book(@PathVariable String major,
                             @PathVariable String minor) {
         //TODO validate currencies
-        Currency maj = Currency.valueOf(major);
-        Currency min = Currency.valueOf(minor);
+        Currency maj = major.isEmpty() ? null : Currency.valueOf(major);
+        Currency min = minor.isEmpty() ? null : Currency.valueOf(minor);
         return orderModel.book(maj, min);
     }
 
