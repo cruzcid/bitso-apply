@@ -49,19 +49,21 @@ public class OrderController {
     public List<Order> book(@PathVariable String major,
                             @PathVariable String minor) {
         //TODO validate currencies
-        Currency maj = major.isEmpty() ? null : Currency.valueOf(major);
-        Currency min = minor.isEmpty() ? null : Currency.valueOf(minor);
+        Currency maj = major == null || major.isEmpty() ? null : Currency.valueOf(major);
+        Currency min = minor == null || minor.isEmpty() ? null : Currency.valueOf(minor);
         return orderModel.book(maj, min);
     }
 
-    @RequestMapping("/query/{userId}/{status}/{currency}")
+    @RequestMapping("/query/{userId}/{status}/{major}/{minor}")
     public List<Order> getBy(@PathVariable long userId,
                              @PathVariable String status,
-                             @PathVariable String currency) {
+                             @PathVariable String major,
+                             @PathVariable String minor) {
         Order.Status st = status == null || status.isEmpty() ? null : Order.Status.valueOf(status);
-        Currency curr = currency == null || currency.isEmpty() ? null : Currency.valueOf(currency);
-        List<Order> r = orderModel.ordersForUser(userId, st, curr);
-        log.debug("Query {}/{}/{} returns {} orders", userId, st, curr, r.size());
+        Currency maj = major == null || major.isEmpty() ? null : Currency.valueOf(major);
+        Currency min = minor == null || minor.isEmpty() ? null : Currency.valueOf(minor);
+        List<Order> r = orderModel.ordersForUser(userId, st, maj,min);
+        log.debug("Query {}/{}/{}/{} returns {} orders", userId, st, maj, min, r.size());
         return r;
     }
 }

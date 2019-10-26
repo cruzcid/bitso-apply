@@ -37,10 +37,11 @@ public class OrderModelImpl implements OrderModel {
     }
 
     @Override
-    public List<Order> ordersForUser(long userId, Order.Status status, Currency currency) {
+    public List<Order> ordersForUser(long userId, Order.Status status, Currency major, Currency minor) {
         return orders.values().stream().filter(o -> o.getUserId() == userId)
                 .filter(o -> status == null || status == o.getStatus())
-                .filter(o -> currency == null || currency == o.getMajor() || currency == o.getMinor())
+                .filter(o -> major == null || major == o.getMajor())
+                .filter(o -> minor == null || minor == o.getMinor())
                 .collect(Collectors.toList());
     }
 
