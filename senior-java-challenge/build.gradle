@@ -49,6 +49,7 @@ task poms {
                 module 'model'
                 module 'model-ram'
                 module 'service'
+                module 'model-db'
             }
         }
     }.writeTo('pom.xml')

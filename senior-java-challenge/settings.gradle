@@ -3,3 +3,6 @@
 //so it's part of the build
 include 'service', 'model'
 include 'model-ram'
+include 'model-db'
+
+
