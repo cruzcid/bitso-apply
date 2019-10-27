@@ -2,13 +2,17 @@ package com.bitso.challenge.entity;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Represents a buy or sell order.
  */
-@Data
+@Entity
 public class Order {
 
     public enum Status {
@@ -18,6 +22,8 @@ public class Order {
         complete,
     }
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private long userId;
     private Status status;
